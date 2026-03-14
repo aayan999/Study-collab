@@ -139,3 +139,25 @@ input:focus, textarea:focus {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+  }
+  .main-content {
+    padding: 1rem;
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.75rem;
+    padding-top: 4rem;
+  }
+  .btn-primary {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
