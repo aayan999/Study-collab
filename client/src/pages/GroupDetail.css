@@ -70,9 +70,11 @@
 }
 
 .group-desc {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.7);
   max-width: 80%;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
 }
 
 .group-members-faces {

@@ -28,46 +28,93 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-card glass-panel">
-        <div className="auth-header">
-          <h1>Welcome Back 👋</h1>
-          <p>Sign in to your StudyCollab account</p>
+      {/* Left: Branding Panel */}
+      <div className="auth-branding">
+        <div className="brand-logo">
+          📚 Study<span>Collab</span>
         </div>
+        <div className="brand-headline">
+          <h2>Your study group,<br />reimagined</h2>
+          <p>Collaborate in real-time with your peers. Share notes, manage tasks, and chat — all in one place.</p>
+        </div>
+        <div className="brand-features">
+          <div className="brand-feature-card">
+            <div className="feature-icon">💬</div>
+            <div className="feature-text">
+              <strong>Real-Time Chat</strong>
+              <span>Instant messaging with your group</span>
+            </div>
+          </div>
+          <div className="brand-feature-card">
+            <div className="feature-icon">📝</div>
+            <div className="feature-text">
+              <strong>Shared Notes</strong>
+              <span>Collaborate on study materials together</span>
+            </div>
+          </div>
+          <div className="brand-feature-card">
+            <div className="feature-icon">📋</div>
+            <div className="feature-text">
+              <strong>Task Boards</strong>
+              <span>Track assignments and deadlines</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        {error && <div className="auth-error">{error}</div>}
+      {/* Right: Form Panel */}
+      <div className="auth-form-panel">
+        <div className="auth-card">
+          <Link to="/" className="auth-home-link">← Back to Home</Link>
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          <div className="form-group">
-            <label>Email Address</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+          <div className="auth-header">
+            <h1>Welcome Back 👋</h1>
+            <p>Sign in to continue to your dashboard</p>
           </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+          {error && <div className="auth-error">{error}</div>}
+
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="form-group">
+              <label>Email Address</label>
+              <div className="input-wrapper">
+                <span className="input-icon">📧</span>
+                <input
+                  type="email"
+                  placeholder="you@university.edu"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Password</label>
+              <div className="input-wrapper">
+                <span className="input-icon">🔒</span>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="auth-submit" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign In →'}
+            </button>
+          </form>
+
+          <div className="auth-divider">or</div>
+
+          <div className="auth-footer">
+            <p>
+              Don't have an account? <Link to="/register">Create one free</Link>
+            </p>
           </div>
-
-          <button type="submit" className="btn-primary auth-submit" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
-
-        <div className="auth-footer">
-          <p>
-            Don't have an account? <Link to="/register">Sign up</Link>
-          </p>
         </div>
       </div>
     </div>
