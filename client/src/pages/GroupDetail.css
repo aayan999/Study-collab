@@ -17,7 +17,7 @@
 .group-header {
   position: relative;
   overflow: hidden;
-  padding: 0;
+  padding: 1.5rem 2rem 3rem 2.5rem;
 }
 
 .brand-stripe {
@@ -29,8 +29,8 @@
 }
 
 .header-inner {
-  padding: 1.5rem 2rem 3.5rem;
-  margin-left: 6px;
+  position: relative;
+  z-index: 2;
 }
 
 .back-link {
@@ -76,7 +76,7 @@
   font-size: 1.1rem;
   font-weight: 400;
   margin-top: 0.75rem;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   opacity: 0.9;
   letter-spacing: 0.01em;
 }
@@ -152,8 +152,11 @@
 }
 
 @media (max-width: 600px) {
+  .group-header {
+    padding: 1.25rem 1.25rem 2rem 1.75rem;
+  }
   .header-inner {
-    padding: 1rem 1.25rem;
+    padding: 0;
   }
   .header-title-row h1 {
     font-size: 1.4rem;
