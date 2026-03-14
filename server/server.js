@@ -48,18 +48,8 @@ app.use('/api/notes', noteRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/messages', messageRoutes);
 
-// Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-  
-  app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api')) {
-      res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
-    }
-  });
-} else {
-  app.get('/', (req, res) => res.json({ message: 'StudyCollab API is running' }));
-}
+// Root route
+app.get('/', (req, res) => res.json({ message: 'StudyCollab API is running' }));
 
 // Socket.IO
 const Message = require('./models/Message');
