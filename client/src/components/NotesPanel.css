@@ -1,0 +1,191 @@
+.notes-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.notes-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.note-editor {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.note-title-input {
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.2) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.note-content-input {
+  font-size: 1rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.note-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.note-card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--primary);
+  flex: 1;
+}
+
+.delete-note-btn {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.note-card:hover .delete-note-btn {
+  opacity: 1;
+}
+
+.delete-note-btn:hover {
+  color: var(--danger);
+}
+
+.note-preview {
+  margin: 1rem 0;
+  flex: 1;
+  color: var(--text-muted);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.note-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.note-author {
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.note-author img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.note-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --- Note Reader Modal --- */
+.note-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.note-modal-content {
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  margin: 2rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  animation: modalIn 0.3s ease;
+  overflow: hidden;
+}
+
+.note-modal-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, #b084f5, #5ce1e6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.note-modal-meta {
+  margin: 1.5rem 0 2rem 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.note-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ededed;
+  white-space: pre-wrap;
+  padding-right: 1rem;
+}
+
+.note-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.note-modal-body::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+.note-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+.note-modal-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: flex-end;
+}
