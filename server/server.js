@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const http = require('http');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -14,15 +15,29 @@ const messageRoutes = require('./routes/messages');
 const app = express();
 const server = http.createServer(app);
 
+// Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  process.env.CLIENT_URL,
+].filter(Boolean);
+
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   },
 });
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }, 
+  credentials: true 
+}));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
@@ -33,7 +48,18 @@ app.use('/api/notes', noteRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/messages', messageRoutes);
 
-app.get('/', (req, res) => res.json({ message: 'StudyCollab API is running' }));
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+    }
+  });
+} else {
+  app.get('/', (req, res) => res.json({ message: 'StudyCollab API is running' }));
+}
 
 // Socket.IO
 const Message = require('./models/Message');
